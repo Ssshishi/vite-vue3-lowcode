@@ -1,3 +1,4 @@
+// commitizen工具的配置文件
 module.exports = {
   // type 类型（定义之后，可通过上下键选择）
   types: [
