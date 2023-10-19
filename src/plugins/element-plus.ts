@@ -72,9 +72,11 @@ const components = [
 const plugins = [ElLoading, ElInfiniteScroll];
 
 export function setupElementPlus(app: App) {
+  // 按需引入这些组件
   components.forEach((component: Component) => {
     app.component(component.name!, component);
   });
+  // 还有这些插件
   plugins.forEach((plugin) => {
     app.use(plugin);
   });
