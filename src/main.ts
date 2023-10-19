@@ -16,9 +16,11 @@ const app = createApp(App);
 
 // 配置store
 setupStore(app);
-// 使用element-plus插件
+
+// 使用element-plus插件  一个Vue 3 UI 框架 
 setupElementPlus(app);
-// 使用vant插件
+
+// 使用vant插件 移动端 Vue 组件库
 setupVant(app);
 
 app.config.globalProperties.$$refs = {};
@@ -26,6 +28,9 @@ app.config.globalProperties.$$refs = {};
 // if (import.meta.env.DEV) {
 window.$$refs = app.config.globalProperties.$$refs;
 // }
+
+// 安装插件
 app.use(router);
+
 // 路由准备完毕再挂载
 router.isReady().then(() => app.mount('#app'));
