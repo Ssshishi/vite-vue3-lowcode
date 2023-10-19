@@ -12,14 +12,17 @@
   import { initVisualData, injectKey, localKey } from '@/visual-editor/hooks/useVisualData';
 
   const visualData = initVisualData();
-  // 注入可视化编辑器所有配置
+  
+  // 注入 可视化编辑器所有配置
   provide(injectKey, visualData);
 
   const { jsonData } = visualData;
 
+  // 监听 beforeunload ， 存储数据
   window.addEventListener('beforeunload', () => {
     sessionStorage.setItem(localKey, JSON.stringify(jsonData));
   });
+  
 </script>
 
 <style lang="scss">
