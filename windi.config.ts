@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [typography()],
   theme: {
     extend: {
+      // 板式自定义配置
       typography: {
         DEFAULT: {
           css: {
