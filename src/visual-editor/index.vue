@@ -3,7 +3,7 @@
  * @Date: 2021-06-24 00:35:17
  * @LastEditTime: 2021-06-27 14:31:28
  * @LastEditors: 卜启缘
- * @Description: 可视化编辑器
+ * @Description: 可视化编辑器 组件式写入
  * @FilePath: \vite-vue3-lowcode\src\visual-editor\index.vue
 -->
 <template>
@@ -13,12 +13,15 @@
       <Header />
       <!-- 顶部end -->
     </el-header>
+    
     <el-container class="layout-container">
+      
       <el-aside class="shadow-sm" width="380px">
         <!-- 左侧组件start -->
         <left-aside />
         <!-- 左侧组件end -->
       </el-aside>
+      
       <el-main>
         <!-- 中间编辑区域start -->
         <simulator-editor />
@@ -28,7 +31,9 @@
         <right-attribute-panel />
         <!-- 右侧属性面板end -->
       </el-main>
+      
     </el-container>
+    
   </el-container>
 </template>
 
