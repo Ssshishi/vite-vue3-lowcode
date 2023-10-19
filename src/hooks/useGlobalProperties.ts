@@ -20,6 +20,7 @@ export const useGlobalProperties = () => {
 
   const registerRef = (el, _vid: string) => el && (globalProperties.$$refs[_vid] = el);
 
+  // 获取 或 设置 全局属性
   return {
     globalProperties,
     registerRef,
