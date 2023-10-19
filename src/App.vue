@@ -12,7 +12,8 @@
   import { initVisualData, injectKey, localKey } from '@/visual-editor/hooks/useVisualData';
 
   const visualData = initVisualData();
-  // 注入可视化编辑器所有配置
+  
+  // 注入 可视化编辑器所有配置
   provide(injectKey, visualData);
 
   const { jsonData } = visualData;
