@@ -33,6 +33,7 @@
     name: 'LeftAside',
   });
 
+  // 把组件写成一个数组，然后以tab的形式使用
   const tabs = Object.entries(components)
     .map(([name, component]) => {
       const { label, icon, order } = component;
