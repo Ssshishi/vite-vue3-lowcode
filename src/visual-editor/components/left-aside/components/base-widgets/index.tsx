@@ -6,6 +6,7 @@
  * @Description: 基础组件
  * @FilePath: \vite-vue3-lowcode\src\visual-editor\components\left-aside\components\base-widgets\index.tsx
  */
+
 import { defineComponent, ref } from 'vue';
 import { cloneDeep } from 'lodash-es';
 import { Edit } from '@element-plus/icons-vue';
