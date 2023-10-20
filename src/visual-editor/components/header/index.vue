@@ -70,20 +70,26 @@
     <!--    右侧工具栏 end-->
     
   </el-row>
+
+  
   <preview v-model:visible="isShowH5Preview" />
 </template>
 
 <script lang="ts" setup>
   import { VideoPlay } from '@element-plus/icons-vue';
-  import Preview from './preview.vue';
-  import { useTools } from './useTools';
   import { useVisualData, localKey } from '@/visual-editor/hooks/useVisualData';
   import { BASE_URL } from '@/visual-editor/utils';
+  
+  import { useTools } from './useTools';
+  import Preview from './preview.vue'; // 预览组件
 
+  // 为了在声明 props 和 emits 选项时获得完整的类型推导支持，我们可以使用 defineProps 和 defineEmits API
+  // 这是一个宏定义，选项将会被提升到模块作用域中，无法访问 <script setup> 中不是字面常数的局部变量。
   defineOptions({
     name: 'PageHeader',
   });
 
+  // 状态
   const isShowH5Preview = ref(false);
 
   // 工具
