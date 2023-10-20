@@ -11,6 +11,7 @@
 </template>
 
 <script lang="ts" setup>
+  // VueUse 是一个基于 Composition API 的实用函数集合 工具包
   import { useVModel } from '@vueuse/core';
   import { BASE_URL } from '@/visual-editor/utils';
 
@@ -24,10 +25,14 @@
       default: false,
     },
   });
+  
   const emits = defineEmits(['update:visible']);
 
+  // useVModel v-model 绑定的简写，props+emit->ref
   const dialogVisible = useVModel(props, 'visible', emits);
+  
   const previewUrl = `${BASE_URL}preview/${location.hash}`;
+  
 </script>
 
 <style lang="scss">
