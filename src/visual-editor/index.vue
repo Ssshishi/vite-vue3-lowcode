@@ -39,6 +39,8 @@
 
 <script setup lang="ts">
   import Header from './components/header/index.vue';
+  // js导入驼峰， 但是html里面用 横杠， 这种差异是为了遵循HTML规范，因为在HTML中标签和属性名通常使用短横线分隔的方式，如<my-component>。
+  // 为了方便开发者在模板中使用组件，允许使用短横线分隔的方式命名组件，同时在JavaScript中仍然使用驼峰命名法导入和注册组件
   import LeftAside from './components/left-aside/index.vue';
   import RightAttributePanel from './components/right-attribute-panel';
   import SimulatorEditor from './components/simulator-editor/simulator-editor.vue';
