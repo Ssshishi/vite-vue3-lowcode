@@ -15,18 +15,20 @@
   export default defineComponent({
     name: 'App',
     setup() {
-      const keepAliveRef = ref();
-      const route = useRoute();
+      const keepAliveRef = ref(); // 创建响应式变量
+      const route = useRoute(); // 当前路由
       const jsonData: VisualEditorModelValue = JSON.parse(
         localStorage.getItem(CacheEnum.PAGE_DATA_KEY) as string,
       );
 
-      // 不需要缓存的页面
+      // 不需要缓存的页面  配置keepAlive为false
       const notNeedcachePages = Object.keys(jsonData.pages).filter(
         (key) => !jsonData.pages[key].config.keepAlive,
       );
+
       console.log('notNeedcachePages:', notNeedcachePages);
 
+      // 监听路由，如果在不需要缓存的页面数组中，则删除缓存路由
       watch(
         () => route.path,
         (path) => {

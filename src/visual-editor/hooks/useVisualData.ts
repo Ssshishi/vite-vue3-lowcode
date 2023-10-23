@@ -7,6 +7,11 @@
  */
 import { reactive, inject, readonly, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+/*
+  useRoute 获取当前路由信息
+  useRouter 获取操作路由的实例
+  两者都是响应式的，当路由发生变化，相关组件自动更新
+*/
 import type { InjectionKey } from 'vue';
 import type {
   VisualEditorModelValue,
@@ -22,7 +27,7 @@ import { CacheEnum } from '@/enums';
 // 保存到本地JSON数据的key
 export const localKey = CacheEnum.PAGE_DATA_KEY;
 
-// 注入jsonData的key
+// 注入jsonData的key 使用symbol创建一个唯一的符号值
 export const injectKey: InjectionKey<ReturnType<typeof initVisualData>> = Symbol();
 
 interface IState {
@@ -74,6 +79,7 @@ export const initVisualData = () => {
   const router = useRouter();
 
   console.log('jsonData：', jsonData);
+
   // 所有页面的path都必须以 / 开发
   const getPrefixPath = (path: string) => (path.startsWith('/') ? path : `/${path}`);
 
@@ -82,18 +88,22 @@ export const initVisualData = () => {
   const state: IState = reactive({
     jsonData,
     currentPage,
+    // 当前正在操作的组件
     currentBlock: currentPage?.blocks?.find((item) => item.focus) ?? ({} as VisualEditorBlockData),
   });
+
   const paths = Object.keys(jsonData.pages);
 
   const isExistPath = paths.some((path) => route.path == path);
+
   // 当前页面是否存在
   if (!isExistPath) {
+    // 回到首页
     router.replace(paths[0] || '/');
     state.currentPage = jsonData.pages[paths[0]] ?? defaultValue.pages['/'];
   }
 
-  // 路由变化时更新当前操作的页面
+  // 监听 路由变化时更新当前操作的页面
   watch(
     () => route.path,
     (url) => setCurrentPage(url),
@@ -111,10 +121,12 @@ export const initVisualData = () => {
       Object.assign(state.jsonData.pages[oldPath], page);
     }
   };
+
   // 添加page
   const incrementPage = (path = '', page: VisualEditorPage) => {
     state.jsonData.pages[getPrefixPath(path)] ??= page ?? createNewPage({ path });
   };
+
   // 删除page
   const deletePage = (path = '', redirectPath = '') => {
     delete state.jsonData.pages[path];
@@ -122,6 +134,7 @@ export const initVisualData = () => {
       setCurrentPage(redirectPath);
     }
   };
+
   // 设置当前页面
   const setCurrentPage = (path = '/') => {
     state.currentPage = jsonData.pages[path];
@@ -241,6 +254,7 @@ export const initVisualData = () => {
   };
 };
 
+// 注入数据
 export const useVisualData = () => inject<ReturnType<typeof initVisualData>>(injectKey)!;
 
 /**

@@ -38,13 +38,16 @@ export function useCommander() {
       if (command.followQueue === false) {
         return;
       }
+
       /*否则，将命令队列中剩余的命令去除，保留current及其之前的命令*/
       const { queue, current } = state;
       if (queue.length > 0) {
         state.queue = queue.slice(0, current + 1);
       }
+
       /*设置命令队列中最后一个命令为当前执行的命令*/
       queue.push({ undo, redo });
+
       /*索引+1，指向队列中的最后一个命令*/
       state.current = current + 1;
     };
@@ -146,6 +149,7 @@ export function useCommander() {
     },
   });
 
+  // 卸载
   onUnmounted(() => state.destroyList.forEach((fn) => !!fn && fn()));
 
   return {

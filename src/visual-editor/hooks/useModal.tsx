@@ -8,11 +8,11 @@
 import {
   defineComponent,
   reactive,
-  createApp,
-  PropType,
+  createApp, // 全局工厂函数，创建根级别的vue应用实例
+  PropType, // props校验，主要来看传递给组件的props是不是正确的类型
   getCurrentInstance,
-  ComponentInternalInstance,
-  isVNode,
+  ComponentInternalInstance, // 组件实例对象，表示内部状态与行为，提供管理和操作组件的方法与属性
+  isVNode, // 检查对象是否是一个有效的虚拟节点 可以使用createVNode 创建虚拟节点
 } from 'vue';
 import { ElButton, ElDialog } from 'element-plus';
 import { isFunction } from '@/visual-editor/utils/is';
@@ -35,6 +35,7 @@ const Modal = defineComponent({
       default: () => ({}),
     },
   },
+
   setup(props) {
     const instance = getCurrentInstance()!;
 
