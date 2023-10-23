@@ -12,12 +12,15 @@ import { visualConfig } from '@/visual.config';
 
 export default defineComponent({
   name: 'CompRender',
+
   props: {
     element: {
       type: Object as PropType<VisualEditorBlockData>,
       default: () => ({}),
     },
   },
+
+  // setup函数在组件实例创建之前执行的，设置组件的状态，生命周期，定义属性与方法，创建响应式数据与引用变量
   setup(props) {
     return visualConfig.componentMap[props.element.componentKey].render({
       styles: props.element.styles || {},

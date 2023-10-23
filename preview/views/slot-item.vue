@@ -8,7 +8,8 @@
 -->
 <template>
   <div class="__slot-item">
-    <comp-render :element="element" v-on="events">
+    <!--  v-on="events" 这个events是个包含多个事件监听的对象  v-on 可以用 @-->
+    <comp-render :element="element" on-click="events">
       <template v-for="(value, key) in element.props?.slots" :key="key" #[key]>
         <template v-for="item in value?.children" :key="item._vid">
           <slot-item :element="item" :models="models" :actions="actions" />
@@ -33,7 +34,8 @@
 
   export default defineComponent({
     name: 'SlotItem',
-    components: { CompRender },
+    components: { CompRender }, // 在定义的组件内部，使用别的组件 CompRender
+
     props: {
       element: {
         type: [Object] as PropType<VisualEditorBlockData>,
@@ -48,12 +50,14 @@
         default: () => ({}),
       },
     },
+
     setup(props) {
       // TODO 生成组件事件
       const events = props.element.actions.reduce((prev, curr) => {
         prev[curr.event] = async () => {
           for (const handle of curr.handle) {
             const [scopeType, actionType, handleKey] = handle.link;
+
             if (scopeType === 'global') {
               const apis: FetchApiItem[] = props.actions[actionType].apis;
               // const { data, options } = apis.find((item) => item.key == handleKey)!;
@@ -77,6 +81,7 @@
         return prev;
       }, {});
 
+      // 挂载
       onMounted(() => {
         const animations = props.element.animations;
         if (animations?.length) {

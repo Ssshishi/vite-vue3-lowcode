@@ -53,6 +53,9 @@
   </div>
 </template>
 
+<!-- lang 语言 这里使用typescript jsx -->
+<!-- 在script标签中加 setup 组件会自动被导出，不需要 export default {} -->
+
 <script lang="tsx" setup>
   import { ref, watchEffect } from 'vue';
   import { cloneDeep } from 'lodash-es';
@@ -67,9 +70,9 @@
   import { useModal } from '@/visual-editor/hooks/useModal';
   import { generateNanoid } from '@/visual-editor/utils';
 
-  defineOptions({
-    name: 'SimulatorEditor',
-  });
+  // defineOptions({
+  //   name: 'SimulatorEditor',
+  // });
 
   const { currentPage, setCurrentBlock } = useVisualData();
 
@@ -238,6 +241,7 @@
     });
   };
 </script>
+
 <style lang="scss" scoped>
   @import './func.scss';
 

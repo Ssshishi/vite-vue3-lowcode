@@ -56,11 +56,12 @@
                   background-color: ${bgColor};
                   background-image: url(${bgImage});
                 }
-             `;
+            `;
           document.styleSheets[0].insertRule(bodyStyleStr);
         }
       });
 
+      // toRefs 将响应式对象转换为普通对象，其中每个属性都被转换为一个独立的响应式引用
       return {
         ...toRefs(state),
         actions: jsonData.actions,

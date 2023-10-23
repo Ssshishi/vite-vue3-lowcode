@@ -304,6 +304,7 @@ export function createVisualEditorConfig() {
   };
   // const componentList: VisualEditorComponent[] = []
   const componentMap: Record<string, VisualEditorComponent> = {};
+
   return {
     componentModules,
     componentMap,
