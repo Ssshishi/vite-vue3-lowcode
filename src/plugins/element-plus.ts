@@ -76,6 +76,7 @@ export function setupElementPlus(app: App) {
   components.forEach((component: Component) => {
     app.component(component.name!, component);
   });
+
   // 还有这些插件
   plugins.forEach((plugin) => {
     app.use(plugin);

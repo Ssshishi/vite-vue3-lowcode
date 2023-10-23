@@ -11,7 +11,7 @@ import {
   provide,
   inject,
 } from 'vue';
-import './dropdown-sservice.scss';
+import './dropdown-service.scss';
 import { defer } from './defer';
 
 interface DropdownServiceOption {
@@ -19,6 +19,9 @@ interface DropdownServiceOption {
   content: () => JSX.Element;
 }
 
+// 高阶函数
+// provide 向子组件提供属性或者方法
+// 在子组件中通过inject() 将数据或方法注入和访问
 const DropdownServiceProvider = (() => {
   const DROPDOWN_SERVICE_PROVIDER = '@@DROPDOWN_SERVICE_PROVIDER';
   return {
@@ -33,6 +36,7 @@ const ServiceComponent = defineComponent({
     const ctx = getCurrentInstance()!;
     const el = ref<InstanceType<typeof HTMLDivElement>>();
 
+    // reactive 则是创建响应式数据对象， 追踪其属性的读取与修改，在变化时触发主动更新。用于追踪数据变化的场景
     const state = reactive({
       option: props.option,
       showFlag: false,
@@ -71,6 +75,7 @@ const ServiceComponent = defineComponent({
       },
     };
 
+    // computed 用于计算属性，提供自动缓存与自动更新的功能，适用于需要基于其他数据进行计算的属性
     const classes = computed(() => [
       'dropdown-service',
       {
@@ -92,6 +97,7 @@ const ServiceComponent = defineComponent({
     };
 
     onMounted(() => document.body.addEventListener('mousedown', onMousedownDocument, true));
+
     onBeforeUnmount(() =>
       document.body.removeEventListener('mousedown', onMousedownDocument, true),
     );

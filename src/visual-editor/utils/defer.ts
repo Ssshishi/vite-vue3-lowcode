@@ -12,6 +12,7 @@ interface Defer {
   };
 }
 
+// 推迟promise
 export const defer: Defer = () => {
   const dfd = {} as any;
   dfd.promise = new Promise((resolve, reject) => {

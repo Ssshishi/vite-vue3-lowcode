@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import NProgress from 'nprogress'; // progress bar Ajax'y 应用程序的细长进度条
+import NProgress from 'nprogress'; // progress bar 进度条
 import 'nprogress/css/nprogress.css'; // 进度条样式
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
@@ -22,7 +22,6 @@ router.beforeEach(() => {
   NProgress.start(); // start progress bar
   return true;
 });
-
 
 // 添加一个导航钩子，它会在每次导航之后被执行。返回一个用来移除该钩子的函数
 router.afterEach(() => {

@@ -1,3 +1,6 @@
+// 编辑器属性
+
+// 虚拟编辑器 属性类型
 export enum VisualEditorPropsType {
   /** 输入框 */
   input = 'input',
@@ -17,6 +20,7 @@ export enum VisualEditorPropsType {
   crossSortable = 'CrossSortable',
 }
 
+// 编辑器 属性
 export type VisualEditorProps = {
   type: VisualEditorPropsType;
   /** 表单项标签名称 */
@@ -42,12 +46,14 @@ export type VisualEditorProps = {
 };
 
 /*---------------------------------------modelBind-------------------------------------------*/
+// 编辑器模型绑定属性
 interface EditorModelBindProp {
   label: string;
   defaultValue?: any;
   tips?: string;
 }
 
+// 创建编辑器模型
 export function createEditorModelBindProp({
   label = '字段绑定',
   defaultValue,
@@ -62,12 +68,14 @@ export function createEditorModelBindProp({
 }
 
 /*---------------------------------------switch-------------------------------------------*/
+// 编辑器开关
 interface EditorSwitchProp {
   label: string;
   defaultValue?: boolean;
   tips?: string;
 }
 
+// 编辑器开关属性
 export function createEditorSwitchProp({
   label,
   defaultValue,
@@ -82,13 +90,14 @@ export function createEditorSwitchProp({
 }
 
 /*---------------------------------------input-------------------------------------------*/
-
+// 编辑器输入框
 interface EditorInputProp {
   label: string;
   defaultValue?: any;
   tips?: string;
 }
 
+// 创建
 export function createEditorInputProp({
   label,
   defaultValue,
@@ -129,7 +138,7 @@ export function createEditorInputNumberProp({
 }
 
 /*---------------------------------------color-------------------------------------------*/
-
+// 颜色
 interface EditorColorProp {
   label: string;
   defaultValue?: string;
@@ -144,7 +153,7 @@ export function createEditorColorProp({ label, defaultValue }: EditorColorProp):
 }
 
 /*---------------------------------------select-------------------------------------------*/
-
+// 选择
 export type VisualEditorSelectOptions = {
   label: string;
   value: string | number | boolean | object;
@@ -177,7 +186,7 @@ export function createEditorSelectProp({
 }
 
 /*---------------------------------------table-------------------------------------------*/
-
+// 表格
 export type VisualEditorTableOption = {
   options: {
     label: string; // 列显示文本
@@ -206,7 +215,7 @@ export function createEditorTableProp({
 }
 
 /*---------------------------------------CrossSortableOptions-------------------------------------------*/
-
+// 可交叉排序
 interface EditorCrossSortableProp {
   label: string;
   labelPosition: 'top' | '';

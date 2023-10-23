@@ -9,31 +9,24 @@
 <template>
   <el-container>
     <el-header height="80px" class="flex items-center shadow-md">
-      <!-- 顶部start -->
+      <!-- 顶部 -->
       <Header />
-      <!-- 顶部end -->
     </el-header>
-    
-    <el-container class="layout-container">
-      
-      <el-aside class="shadow-sm" width="380px">
-        <!-- 左侧组件start -->
-        <left-aside />
-        <!-- 左侧组件end -->
-      </el-aside>
-      
-      <el-main>
-        <!-- 中间编辑区域start -->
-        <simulator-editor />
-        <!-- 中间编辑区域end -->
 
-        <!-- 右侧属性面板start -->
+    <el-container class="layout-container">
+      <el-aside class="shadow-sm" width="380px">
+        <!-- 左侧栏 -->
+        <left-aside />
+      </el-aside>
+
+      <el-main>
+        <!-- 中间编辑区域 -->
+        <simulator-editor />
+
+        <!-- 右侧属性面板 -->
         <right-attribute-panel />
-        <!-- 右侧属性面板end -->
       </el-main>
-      
     </el-container>
-    
   </el-container>
 </template>
 

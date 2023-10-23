@@ -20,11 +20,16 @@ const keyGenerator = (() => {
   return () => `auto_key_${count++}`;
 })();
 
+// defineComponent 定义 Vue 组件时提供类型推导的辅助函数。
 const ServiceComponent = defineComponent({
-  name: 'DialogService',
+  name: 'DialogService', // 组件的名称
+
+  // 组件的属性 定义属性的类型与默认值等信息 类型 是否必须，默认值 校验规则
   props: {
     option: { type: Object as PropType<DialogServiceOption>, required: true },
   },
+
+  // 设置函数 组件的入口点
   setup(props) {
     const ctx = getCurrentInstance()!;
 
@@ -42,9 +47,11 @@ const ServiceComponent = defineComponent({
         state.key = keyGenerator();
         methods.show();
       },
+
       show: () => {
         state.showFlag = true;
       },
+
       hide: () => {
         state.showFlag = false;
       },
@@ -94,14 +101,18 @@ const DialogService = (() => {
     if (!ins) {
       const el = document.createElement('div');
       document.body.appendChild(el);
+      // 创建应用实例ServiceComponent，并在上面挂载元素
       const app = createApp(ServiceComponent, { option });
       ins = app.mount(el);
     }
+    // 配置服务
     ins.service(option);
   };
 })();
 
+// 以$$开头命名，表示内部属性或者私有属性
 export const $$dialog = Object.assign(DialogService, {
+  // 输入框
   input: (
     initValue?: string,
     title?: string,
@@ -115,9 +126,13 @@ export const $$dialog = Object.assign(DialogService, {
       editValue: initValue,
       title,
     };
+
     DialogService(opt);
+
     return dfd.promise;
   },
+
+  // 文本区域
   textarea: (
     initValue?: string,
     title?: string,

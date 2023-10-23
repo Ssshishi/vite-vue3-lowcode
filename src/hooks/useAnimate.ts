@@ -41,7 +41,9 @@ export const useAnimate = async (
         // 动画结束时，删除类名
         const handleAnimationEnd = (event?: AnimationEvent) => {
           event?.stopPropagation();
+          // 移除class
           animateEl.classList.remove(`${prefixCls}animated`, animationName);
+          // 关闭监听
           animateEl.removeEventListener('animationend', handleAnimationEnd);
           resolve('animation end');
         };

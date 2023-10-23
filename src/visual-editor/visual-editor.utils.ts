@@ -1,3 +1,4 @@
+// 编辑器中一些功能
 import { inject, provide } from 'vue';
 import type { VisualEditorProps } from './visual-editor.props';
 import type { CSSProperties } from 'vue';
