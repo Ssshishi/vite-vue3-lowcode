@@ -17,7 +17,7 @@ const app = createApp(App);
 // 配置store
 setupStore(app);
 
-// 使用element-plus插件  一个Vue 3 UI 框架 
+// 使用element-plus插件  一个Vue 3 UI 框架
 setupElementPlus(app);
 
 // 使用vant插件 移动端 Vue 组件库

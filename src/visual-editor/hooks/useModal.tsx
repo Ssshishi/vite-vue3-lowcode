@@ -39,13 +39,16 @@ const Modal = defineComponent({
   setup(props) {
     const instance = getCurrentInstance()!;
 
-    const state = reactive({
+    const state = reactive<{
+      options: ModalOptions;
+      visible: boolean;
+    }>({
       options: props.options,
       visible: true,
     });
 
     const methods = {
-      service: (options: ModalOptions) => {
+      service: (options) => {
         state.options = options;
         methods.show();
       },

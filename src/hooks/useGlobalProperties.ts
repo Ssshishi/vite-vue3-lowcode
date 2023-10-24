@@ -22,7 +22,7 @@ interface GlobalProperties {
 
 export const useGlobalProperties = () => {
   const globalProperties = getCurrentInstance()!.appContext.config
-    .globalProperties as GlobalProperties;
+    .globalProperties as unknown as GlobalProperties;
 
   const registerRef = (el, _vid: string) => el && (globalProperties.$$refs[_vid] = el);
 
