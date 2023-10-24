@@ -25,7 +25,6 @@ import { useModal } from '@/visual-editor/hooks/useModal';
 import MonacoEditor from '@/visual-editor/components/common/monaco-editor/MonacoEditor';
 import 'element-plus/es/components/message/style/css';
 
-
 // 中间工具栏
 export const useTools = () => {
   const { jsonData, updatePage, currentPage, overrideProject } = useVisualData();
@@ -35,7 +34,7 @@ export const useTools = () => {
     coverRadio: 'current',
     importJsonValue: '',
   });
-  
+
   const importJsonChange = (value) => {
     state.importJsonValue = value;
   };
@@ -56,7 +55,7 @@ export const useTools = () => {
                 <ElRadio label="current">覆盖当前页面</ElRadio>
                 <ElRadio label="all">覆盖整个项目</ElRadio>
               </ElRadioGroup>
-              
+
               <MonacoEditor
                 onChange={importJsonChange}
                 code={JSON.stringify(jsonData)}
@@ -118,7 +117,7 @@ export const useTools = () => {
         });
       },
     },
-    
+
     {
       title: '复制页面',
       icon: DocumentCopy,
@@ -131,7 +130,7 @@ export const useTools = () => {
         });
       },
     },
-    
+
     {
       title: '撤销',
       icon: RefreshLeft,
@@ -144,7 +143,7 @@ export const useTools = () => {
         });
       },
     },
-    
+
     {
       title: '重做',
       icon: RefreshRight,
@@ -157,7 +156,7 @@ export const useTools = () => {
         });
       },
     },
-    
+
     {
       title: '清空页面',
       icon: Delete,
@@ -170,7 +169,7 @@ export const useTools = () => {
         });
       },
     },
-    
+
     {
       title: '预览',
       icon: Position,
@@ -179,7 +178,7 @@ export const useTools = () => {
         window.open(location.href.replace('/#/', '/preview/#/'));
       },
     },
-    
+
     {
       title: '反馈',
       icon: ChatLineSquare,

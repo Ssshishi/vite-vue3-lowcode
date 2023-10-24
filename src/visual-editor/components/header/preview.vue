@@ -25,14 +25,13 @@
       default: false,
     },
   });
-  
+
   const emits = defineEmits(['update:visible']);
 
   // useVModel v-model 绑定的简写，props+emit->ref
   const dialogVisible = useVModel(props, 'visible', emits);
-  
+
   const previewUrl = `${BASE_URL}preview/${location.hash}`;
-  
 </script>
 
 <style lang="scss">

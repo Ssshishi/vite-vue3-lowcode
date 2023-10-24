@@ -11,6 +11,7 @@
     :current-node-key="currentNodeKey"
     @node-click="handleNodeClick"
   >
+    <!-- 使用了默认插槽，通过 #default 指令来定义。{ node, data } 是插槽的参数，用于接收插槽内容传递的数据。 -->
     <template #default="{ node, data }">
       <span class="custom-tree-node">
         <span

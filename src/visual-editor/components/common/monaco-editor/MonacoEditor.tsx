@@ -13,6 +13,7 @@ let preventTriggerChangeEvent = false;
 
 export default defineComponent({
   name: 'MonacoEditor',
+
   props: {
     code: {
       // 代码
@@ -40,6 +41,7 @@ export default defineComponent({
       default: '',
     },
   },
+
   setup(props) {
     // 需要一个shallowRef: 只监听value，不关心实际对象
     const editorRef = shallowRef<Monaco.editor.IStandaloneCodeEditor | null>(null);
@@ -49,6 +51,7 @@ export default defineComponent({
 
     // 格式化代码
     const formatCode = () => {
+      // requestIdleCallback 是指在浏览器空闲的时候执行代码，避免阻塞主线程
       window.requestIdleCallback(
         () => {
           editorRef.value!.getAction('editor.action.formatDocument').run();
@@ -58,7 +61,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      // 组件初始化时创建一个MonacoEditor的实例
+      // 组件初始化时 创建一个MonacoEditor的实例
       editorRef.value = Monaco.editor.create(containerDomRef.value!, {
         value: props.code, // 初始值
         theme: 'vs-dark', // vs, hc-black, or vs-dark
@@ -82,7 +85,9 @@ export default defineComponent({
           props.onChange?.(editorRef.value!.getValue(), event);
         }
       });
+
       formatCode();
+
       editorRef.value.layout(props.layout);
     });
 
@@ -92,6 +97,7 @@ export default defineComponent({
         subscription.dispose();
       }
     });
+
     // 更新编辑器
     const refreshEditor = () => {
       if (editorRef.value) {
@@ -128,6 +134,10 @@ export default defineComponent({
       }
     };
 
+    /**
+     * watch(函数用来返回监听属性值，回调事件，选项对象)
+     * 选项对象 immediate参数设置为true，表示在初始化渲染时会执行
+     */
     watch(() => props.vid, refreshEditor, { immediate: true });
 
     return () => {

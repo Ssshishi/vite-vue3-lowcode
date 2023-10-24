@@ -61,6 +61,7 @@ export const FormatInputNumber = defineComponent({
           {...attrs}
           onInput={onInput}
         >
+          {/* 表示具名插槽 名字为append */}
           {{
             append: () => (
               <div class={'flex flex-col'}>
