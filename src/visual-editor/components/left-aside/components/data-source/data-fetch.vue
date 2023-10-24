@@ -61,9 +61,11 @@
     ElCascader,
     ElIcon,
     ExpandTrigger,
+    FormItemRule,
   } from 'element-plus';
   import { cloneDeep } from 'lodash-es';
   import { Delete, Edit } from '@element-plus/icons-vue';
+  import { Arrayable } from 'element-plus/es/utils';
   import { useImportSwaggerJsonModal } from './utils';
   import type { FetchApiItem, VisualEditorModel } from '@/visual-editor/visual-editor.utils';
   import { useVisualData } from '@/visual-editor/hooks/useVisualData';
@@ -78,10 +80,12 @@
 
   const { jsonData, incrementFetchApi, updateFetchApi, deleteFetchApi } = useVisualData();
   const { showImportSwaggerJsonModal } = useImportSwaggerJsonModal();
+
   /**
    * @description 接口集合
    */
   const apis = computed(() => cloneDeep(jsonData.actions.fetch.apis));
+  // computed 依赖一个或多个数据属性，同时computed的值会被缓存
 
   /**
    * @description 模型集合
@@ -109,6 +113,7 @@
       recv: '', // 响应的结果绑定到某个实体上
     },
   });
+
   const ruleFormRef = ref<InstanceType<typeof ElForm>>();
 
   const state = reactive<IState>({
@@ -116,9 +121,9 @@
     ruleForm: createEmptyApiItem(),
   });
 
-  const rules = {
+  const rules: Partial<Record<string, Arrayable<FormItemRule>>> = {
     name: [{ required: true, message: '请输入接口名称', trigger: 'change' }],
-    'options.url': [{ required: true, message: '请输入接口名称', trigger: 'change' }],
+    'options.url': [{ required: true, message: '请选择内容类型', trigger: 'change' }],
     'options.contentType': [{ required: true, message: '请选择内容类型', trigger: 'change' }],
   };
 

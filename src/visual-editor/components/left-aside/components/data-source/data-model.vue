@@ -19,6 +19,7 @@
   <el-collapse v-model="state.activeNames" v-infinite-scroll="() => {}">
     <template v-for="item in models" :key="item.key">
       <el-collapse-item :title="item.name" :name="item.key">
+        <!-- #title #具名插槽 -->
         <template #title>
           <div class="model-item-title">
             <span class="truncate w-160px">{{ item.name }}</span>
@@ -32,6 +33,7 @@
                 @confirm="deleteModel(item.key)"
               >
                 <template #reference>
+                  <!-- :size 元素属性与数据绑定 -->
                   <el-icon :size="24" color="#f44336"><Delete /></el-icon>
                 </template>
               </el-popconfirm>
@@ -142,6 +144,7 @@
           >
             <ElInput v-model={state.ruleForm.name} placeholder={'请输入数据源名称'}></ElInput>
           </ElFormItem>
+
           {!state.ruleForm.entitys.length && (
             <ElFormItem>
               <ElButton onClick={addEntityItem} type={'primary'}>
@@ -149,6 +152,7 @@
               </ElButton>
             </ElFormItem>
           )}
+
           {state.ruleForm.entitys.map((entity, index) => (
             <ElCard
               key={index}
@@ -233,6 +237,7 @@
       onCancel: () => (state.ruleForm = createEmptyModel()),
     });
   };
+
   /**
    * @description 编辑模型
    */

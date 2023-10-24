@@ -22,6 +22,7 @@
   import DataModel from './data-model.vue';
   import DataFetch from './data-fetch.vue';
 
+  // 直接在 <script setup> 中声明组件选项
   defineOptions({
     label: '数据源',
     order: 2,
@@ -31,6 +32,9 @@
 
 <style lang="scss" scoped>
   .data-source :deep {
+    /* :deep 伪类表示选择器内部的所有子代元素， 
+      还有好多的伪类的 
+    */
     .el-tabs__header {
       position: sticky;
       top: 0;
@@ -39,6 +43,7 @@
 
     .el-tabs__content {
       contain: layout;
+      /* 内容没有进入视图区域时是不可见的 */
       content-visibility: auto;
     }
   }
